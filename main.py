@@ -8,7 +8,7 @@ from model import runModel, SimpleLetter
 app = FastAPI()
 
 
-@app.post("/userID", response_model=JsonResponMsg)
+@app.post("/model", response_model=JsonResponMsg)
 async def newUserById(body: Body) -> JsonResponMsg:
     print(body)
     result: List[SimpleLetter] = runModel(data=body['corpus'])
