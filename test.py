@@ -7,17 +7,22 @@ def cleanStr(content) -> str :
   return re.sub(f'[^\u4e00-\u9fa5^a-z^A-Z^0-9]', "", content) or ""
 
 def getmodel(s: str):
-    return rq.post("http://127.0.0.1:8080/userID",json={
+    result = rq.post("http://127.0.0.1:8080/model",json={
         "corpus": cleanStr(s)
-    }).json()['result']
+    }).json()
+    # print(result)
+    return result['result']
+
 def humanParse(res: List[Any])-> str:
     res_human: Literal[''] = ""
     for unit in res:
         res_human+=(unit["word"])
         if unit["entity"] == "/" :
-            res_human+=(unit["entity"])
+            res_human+=("/ ")
         if unit["entity"] == "|" :
             res_human+=(" ")
+        if unit["entity"] == "。" :
+            res_human+=("。 ")
     return res_human
 
 with open('data.tsv', newline='\n') as csvfile:
