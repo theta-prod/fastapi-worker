@@ -2,8 +2,11 @@ from transformers import AutoTokenizer, AutoModelForTokenClassification, TokenCl
 from transformers.models.bert.tokenization_bert_fast import BertTokenizerFast
 from transformers.models.bert.modeling_bert import BertForTokenClassification
 from typing import TypedDict, List
+import re
 
-
+def cleanStr(content: str)-> str:
+  content = content.replace("\n","")
+  return re.sub('[^\u4e00-\u9fa5^a-z^A-Z^0-9]', "", content)
 # type
 class Letter(TypedDict):
     entity: str
@@ -37,7 +40,7 @@ classifier: TokenClassificationPipeline = TokenClassificationPipeline(
 
 
 def runModel(data: str) -> List[SimpleLetter]:
-    modelResult: List[Letter] = classifier(data)
+    modelResult: List[Letter] = classifier(cleanStr(data))
     return [{
         "word": row["word"],
         "entity": row["entity"]
