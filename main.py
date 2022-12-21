@@ -2,8 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from type.response import JsonResponMsg
 from type.client import Body
-from typing import List
-from model import runModel, SimpleLetter
+from typing import List, Any
+from model import runModel
 
 app = FastAPI()
 
@@ -11,7 +11,7 @@ app = FastAPI()
 @app.post("/model", response_model=JsonResponMsg)
 async def newUserById(body: Body) -> JsonResponMsg:
     print(body)
-    result: List[SimpleLetter] = runModel(data=body['corpus'])
+    result: List[Any] = runModel(data=body['corpus'])
     return JsonResponMsg(status=200, result=result)
 
 

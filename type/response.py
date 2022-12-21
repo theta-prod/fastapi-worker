@@ -1,4 +1,4 @@
-from typing import TypedDict, NewType, List, Dict
+from typing import TypedDict, NewType, List, Any
 
 class modelResult(TypedDict):
     word: str
@@ -10,4 +10,4 @@ class JsonResponBase(TypedDict):
 
 
 class JsonResponMsg(JsonResponBase):
-    result: List[modelResult]
+    result: List[Any]

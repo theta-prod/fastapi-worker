@@ -31,14 +31,13 @@ def getTokenizer(tag: str) -> BertTokenizerFast:
 
 
 def getModel(tag: str):  # -> BertForTokenClassification:
-  return AutoModelForSequenceClassification.from_pretrained(
-    tag, use_auth_token="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")
+  return AutoModelForSequenceClassification.from_pretrained(tag)
 
 
 ##
 tokenizer: BertTokenizerFast = getTokenizer("bert-base-chinese")
 model: BertForTokenClassification = getModel("theta/MBTI-ckiplab-bert")
-classifier: Any = TextClassificationPipeline(model=model, tokenizer=tokenizer)
+classifier: Any = TextClassificationPipeline(model=model, tokenizer=tokenizer, return_all_scores=True)
 
 
 def runModel(data: str):  #-> List[SimpleLetter]:
