@@ -1,6 +1,7 @@
 import requests as rq
 from typing import TypedDict, List
 import re
+import os
 # 
 def cleanStr(content: str)-> str:
   content = content.replace("\n","")
@@ -14,7 +15,7 @@ class modelOutput(TypedDict):
 
 header = {
   "Content-Type": "application/json",
-  "Authorization": f"Bearer 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"
+  "Authorization": f"Bearer {os.environ.get('APIKEY','')}"
 }
 
 
@@ -27,6 +28,7 @@ def runModel(text: str) -> modelOutput:
     "temperature": 0
   }
   x = rq.post(url=url, json=body, headers=header)
+  print(x.json())
   return {
     "result": x.json()["choices"][0]["text"]
   }

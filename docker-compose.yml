@@ -8,5 +8,7 @@ services:
       resources:
         limits:
           memory: 256M
+    environment:
+      - APIKEY=<YOURKEY>
     ports:
       - "8081:8080"
