@@ -3,15 +3,15 @@ from fastapi import FastAPI
 from type.response import JsonResponMsg
 from type.client import Body
 from typing import List
-from model import runModel, SimpleLetter
+from model import runModel, modelOutput
 
 app = FastAPI()
 
 
-@app.post("/model", response_model=JsonResponMsg)
+@app.post("/chatGPT", response_model=JsonResponMsg)
 async def newUserById(body: Body) -> JsonResponMsg:
     print(body)
-    result: List[SimpleLetter] = runModel(data=body['corpus'])
+    result: modelOutput = runModel(body['corpus'])
     return JsonResponMsg(status=200, result=result)
 
 
