@@ -11,10 +11,7 @@ app = FastAPI()
 @app.post("/chatGPT", response_model=JsonResponMsg)
 async def newUserById(body: Body) -> JsonResponMsg:
   print(body)
-  if "max_len" in body:
-    result: str = runModel(body['corpus'], body['max_len'])
-  else:
-    result: str = runModel(body['corpus'])
+  result: str = runModel(body['corpus'], body['max_len'])
 
   return JsonResponMsg(status=200, result=result)
 
