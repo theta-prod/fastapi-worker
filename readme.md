@@ -20,7 +20,7 @@
 | Sub title | decription | memo |
 | ------ | ------ | ------ |
 | API | 使用FastAPI來建置API | 包含文件使用和定義 |
-| MODEL | 從huggingface上下載服務來實現API服務 | 包含載入模型與驅動模型 |
+| MODEL | - | - |
 
 
 ---
@@ -103,28 +103,7 @@ http://127.0.0.1:8080/docs/
 
 
 ####  📝 載入模型
-這邊我們載入模型和相關配套套件。並使用`TokenClassificationPipeline`來驅動模型
-```
-from transformers import AutoTokenizer, AutoModelForTokenClassification, TokenClassificationPipeline
-from transformers.models.bert.tokenization_bert_fast import BertTokenizerFast
-from transformers.models.bert.modeling_bert import BertForTokenClassification
 
-##
-def getTokenizer(tag: str) -> BertTokenizerFast:
-    return AutoTokenizer.from_pretrained(tag)
-
-
-def getModel(tag: str, num_labels: int = 4) -> BertForTokenClassification:
-    return AutoModelForTokenClassification.from_pretrained(
-        tag, num_labels=num_labels)
-
-
-##
-tokenizer: BertTokenizerFast = getTokenizer("bert-base-chinese")
-model: BertForTokenClassification = getModel("theta/sentcore")
-classifier: TokenClassificationPipeline = TokenClassificationPipeline(
-    model=model, tokenizer=tokenizer)
-```
 
 ####  📝 模型處理
 載入完模型，建議根據模型的輸出去定義物件，增加系統穩定性
@@ -156,14 +135,9 @@ def runModel(data: str) -> List[SimpleLetter]:
 - 測試模型
 
 ```
-runModel("據了解台南市警二分局民權所警員凃明誠曹瑞傑慘遭割喉殉職嫌犯林信吾經過18小時的逃亡23日清晨4時36分在新竹的和欣客運站落網")
+#1
+runModel("Request a self-performance assessment about Migrate BDM from OKD to TKS and rebuild BDM code and comfirm those pods is work.")
 
->>> [
-	{"word": "據" , "entity": "|"},
-	{"word": "了" , "entity": ""},
-	{"word": "解" , "entity": "|"},
-	...
-]
-
+#2
+runModel("translete this sentence to trandition-chinese: Very true, honestly. Hopefully one day indiginous issues won't be a political career killer, and we'll have a PM that dares to do something.")
 ```
-
