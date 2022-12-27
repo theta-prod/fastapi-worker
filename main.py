@@ -10,9 +10,9 @@ app = FastAPI()
 
 @app.post("/chatGPT", response_model=JsonResponMsg)
 async def newUserById(body: Body) -> JsonResponMsg:
-    print(body)
-    result: modelOutput = runModel(body['corpus'])
-    return JsonResponMsg(status=200, result=result)
+  print(body)
+  result: str = runModel(body['corpus'])
+  return JsonResponMsg(status=200, result=result)
 
 
 uvicorn.run(app, host="0.0.0.0", port=8080)

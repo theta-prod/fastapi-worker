@@ -19,7 +19,7 @@ header = {
 }
 
 
-def runModel(text: str) -> modelOutput:
+def runModel(text: str) -> str:> ㄋ:
   url: str= "https://api.openai.com/v1/completions"
   body = {
     "model": "text-davinci-003",#"text-ada-001",#,
@@ -29,9 +29,7 @@ def runModel(text: str) -> modelOutput:
   }
   x = rq.post(url=url, json=body, headers=header)
   print(x.json())
-  return {
-    "result": x.json()["choices"][0]["text"]
-  }
+  return x.json()["choices"][0]["text"]
 
 print(runModel("""別人對我的好會放在心中很久很久，也會時常想要為他們做點什麼原來在別人眼中我是勇敢的，在我的記憶中，常常記得別人對我的傷害，其實我也是有把別人對我的好記在心中。
 

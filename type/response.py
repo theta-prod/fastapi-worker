@@ -8,4 +8,4 @@ class JsonResponBase(TypedDict):
 
 
 class JsonResponMsg(JsonResponBase):
-    result: Dict[str, Any]
+    result: str
