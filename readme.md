@@ -140,4 +140,7 @@ runModel("Request a self-performance assessment about Migrate BDM from OKD to TK
 
 #2
 runModel("translete this sentence to trandition-chinese: Very true, honestly. Hopefully one day indiginous issues won't be a political career killer, and we'll have a PM that dares to do something.")
+
+#3
+runModel("write a detail working report about those:\n\n1. create buckets in MinIO\n\n2.Assesst to update config of BDM service\n\n3.start-off to build coa-cache service")
 ```
