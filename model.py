@@ -19,12 +19,12 @@ header = {
 }
 
 
-def runModel(text: str) -> str:> ㄋ:
+def runModel(text: str, max_len: int = 300) -> str:
   url: str= "https://api.openai.com/v1/completions"
   body = {
     "model": "text-davinci-003",#"text-ada-001",#,
     "prompt": text,
-    "max_tokens": 300,
+    "max_tokens": max_len,
     "temperature": 0
   }
   x = rq.post(url=url, json=body, headers=header)
