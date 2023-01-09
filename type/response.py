@@ -1,4 +1,4 @@
-from typing import TypedDict, NewType, List, Any
+from typing import TypedDict,  List, Any
 
 class modelResult(TypedDict):
     word: str
