@@ -11,7 +11,7 @@ on:
 env:
   GITHUB_SHA: '${{ github.sha }}'
   GITHUB_REF: '${{ github.ref }}'
-  IMAGE: 'python:3.7.13-slim'
+  IMAGE: 'python:3.9.15-slim'
   REGISTRY_HOSTNAME: 'gcr.io'
   IMAGE_NAME: 'mbti-ckip-bert'
   PROJECT_NAME: 'voiss-353911'
