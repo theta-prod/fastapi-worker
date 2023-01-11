@@ -30,7 +30,7 @@ def getTokenizer(tag: str) -> BertTokenizerFast:
 
 
 def getModel(tag: str):  # -> BertForTokenClassification:
-  return AutoModelForSequenceClassification.from_pretrained(tag, revision="2d72350e408484a1c171e32dec78334d733d0af3")
+  return AutoModelForSequenceClassification.from_pretrained(tag)#, revision="2d72350e408484a1c171e32dec78334d733d0af3")
 
 
 ##
