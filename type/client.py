@@ -5,3 +5,4 @@ corpus = NewType("corpus", str)
 
 class Body(TypedDict):
     corpus: corpus
+    max_length: int
