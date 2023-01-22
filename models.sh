@@ -1,0 +1,1 @@
+curl https://api.openai.com/v1/fine-tunes -H 'Authorization: Bearer YOUR_API_KEY'
