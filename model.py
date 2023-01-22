@@ -1,6 +1,6 @@
 import requests as rq
 from typing import TypedDict, NamedTuple
-
+import json
 import re
 import os
 # 
@@ -35,11 +35,15 @@ def runModel(taskObj: TaskObj) -> ModelOutput:
     "max_tokens": 3,
     "temperature": 0
   }
-  x = rq.post(url=url, json=body, headers=header)
-  print(x.json())
-  return {
-    "result": str(x.json()['choices'][0]['text'])
-  }
+  x = rq.post(url=url, json=body, headers=header).json()
+  if 'choices' in x:
+    return {
+      "result": str(x['choices'][0]['text'])
+    }
+  else:
+    return {
+      "result": json.dumps(x)
+    }
 
 print(runModel(TaskObj(
   question = "我護理專科肄業，現年30歲，為連鎖店門市正職人員,最近一直思考是否要回學校補齊專科學歷，但補齊學歷真的會對工作選擇更多嗎，工作經驗一直以來都是服務業性質，想跳脫這種性質但又發現自己能做的也只有這類型工作，有上赫綵設計相關課程喜歡畫畫但目前感覺好像都是在繳錢實質上對工作轉職目前還無成效！不知道是否要繼續這一塊，也喜歡烘焙！有想說是不是可以考取相關證照增加轉職或工作機會！但好像還是逃離不了服務業性質！，還是什麼都不要想，安份於現況好好工作與生活呢？望各位前輩或朋友們曾有相似之處的或疑慮過的能提供我一些建議或意見！謝謝大家",
