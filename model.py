@@ -30,7 +30,7 @@ def runModel(taskObj: TaskObj) -> ModelOutput:
 
 
   body = {
-    "model": "davinci:ft-voiss-co-ltd:ensemble-base-2023-01-23-08-05-08",#"text-ada-001",#,
+    "model": "davinci:ft-voiss-co-ltd:ensemble-base-2023-01-23-08-42-12",#"text-ada-001",#,
     "prompt": f"{taskObj['question']} -ques;ans- {taskObj['reply']} ->",
     "max_tokens": 3,
     "temperature": 0
