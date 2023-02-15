@@ -66,7 +66,7 @@ from fastapi import FastAPI
 from type.response import JsonResponMsg
 from type.client import Body
 from typing import List
-from model import runModel, SimpleLetter
+from model import runModel, ModelResult
 
 app = FastAPI()
 
@@ -74,7 +74,7 @@ app = FastAPI()
 @app.post("/model", response_model=JsonResponMsg)
 async def newUserById(body: Body) -> JsonResponMsg:
     print(body)
-    result: List[SimpleLetter] = runModel(data=body['corpus'])
+    result: List[ModelResult] = runModel(data=body['corpus'])
     return JsonResponMsg(status=200, result=result)
 
 
@@ -141,11 +141,11 @@ class Letter(TypedDict):
     end: int
 
 
-class SimpleLetter(TypedDict):
+class ModelResult(TypedDict):
     entity: str
     word: str
 
-def runModel(data: str) -> List[SimpleLetter]:
+def runModel(data: str) -> List[ModelResult]:
     modelResult: List[Letter] = classifier(data)
     return [{
         "word": row["word"],
